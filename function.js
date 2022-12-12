@@ -1,4 +1,4 @@
-// currency change
+
 const api = "https://api.exchangerate-api.com/v4/latest/USD";
  
 
@@ -12,35 +12,27 @@ var resultFrom;
 var resultTo;
 var searchValue;
  
-//currency is changed
 fromCurrecy.addEventListener('change', (event) => {
     resultFrom = `${event.target.value}`;
 });
  
-//currency is changed
 toCurrecy.addEventListener('change', (event) => {
     resultTo = `${event.target.value}`;
 });
  
 search.addEventListener('input', updateValue);
  
-//updating value
 function updateValue(e) {
     searchValue = e.target.value;
 }
- 
-//function getresults
 convert.addEventListener("click", getResults);
  
-// function getresults
 function getResults() {
     fetch(`${api}`)
         .then(currency => {
             return currency.json();
         }).then(displayResults);
 }
- 
-// display results after conversion
 function displayResults(currency) {
     let fromRate = currency.rates[resultFrom];
     let toRate = currency.rates[resultTo];
@@ -49,7 +41,6 @@ function displayResults(currency) {
     finalAmount.style.display = "block";
 }
  
-//reset button
 function clearVal() {
     window.location.reload();
     document.getElementsByClassName("finalValue").innerHTML = "";
